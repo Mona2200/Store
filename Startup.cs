@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Store.Contracts.Validators;
 
 namespace Store
 {
@@ -29,6 +31,8 @@ namespace Store
       public void ConfigureServices(IServiceCollection services)
       {
          services.Configure<Product>(Configuration);
+
+         services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddProductRequestValidator>());
 
          var assembly = Assembly.GetAssembly(typeof(MappingProfile));
          services.AddAutoMapper(assembly);

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Store.BLL.ViewModels;
+using Store.Contracts.Models;
 using Store.Models;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,17 @@ namespace Store.Controllers
       }
 
       [HttpGet]
-      [Route("info")]
-      public IActionResult Info()
+      [Route("")]
+      public IActionResult Get()
       {
-         var infoResponse = _mapper.Map<Product, ProductView>(_options.Value);
+         return StatusCode(200, "Устройства отсутствуют");
+      }
 
-         return StatusCode(200, infoResponse);
+      [HttpPost]
+      [Route("Add")]
+      public IActionResult Add([FromBody] AddProductRequest request)
+      {
+         return StatusCode(200, $"Добавление {request.Name} прошло успешно.");
       }
    }
 }
