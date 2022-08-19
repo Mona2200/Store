@@ -1,21 +1,24 @@
-﻿using Store.BLL.Models;
-using Store.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.BLL.ViewModels
+namespace Store.Contracts.Models
 {
-   public class ProductView
+   public class AddProductRequest
    {
+      [Required]
       public string Name { get; set; }
+      [Required]
       public string Description { get; set; }
+      [Required]
       public string Gender { get; set; }
-      public List<Category> Categories { get; set; }
+      [Required]
+      public string[] Categories { get; set; }
+      [Required]
       public string Size { get; set; }
+      [Required]
       public uint Price { get; set; }
-      public float Rating { get; set; }
-      public List<Review> Reviews { get; set; }
    }
 }

@@ -1,4 +1,4 @@
-﻿namespace Store.BLL.Models
+﻿namespace Store.Models
 {
    public class Role
    {

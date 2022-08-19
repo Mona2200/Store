@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.BLL.Models
+namespace Store.Models
 {
-   public enum Category
+   public class User
    {
-      Shoes,
-      Top,
-      Pants,
-      Sweater
    }
 }
