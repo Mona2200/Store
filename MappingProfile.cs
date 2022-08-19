@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Store.BLL.ViewModels;
+using Store.ViewModels;
 using Store.Models;
 using System;
 using System.Collections.Generic;
