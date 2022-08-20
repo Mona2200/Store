@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace Store.Data.Models
 {
-[Table("Products")]
+   [Table("Products")]
    public class Product
    {
       public Guid Id { get; set; } = Guid.NewGuid();
       public string Name { get; set; }
       public string Description { get; set; }
       public bool Gender { get; set; }
-      public String Categories { get; set; }
+      public string Categories { get; set; }
       public string Size { get; set; }
       public uint Price { get; set; }
       public float Rating { get; set; }
-      public List<Review> Reviews { get; set; }
    }
 }

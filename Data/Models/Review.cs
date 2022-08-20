@@ -10,6 +10,10 @@ namespace Store.Data.Models
 [Table("Reviews")]
    public class Review
    {
-   
+      public Guid Id { get; set; } = Guid.NewGuid();
+      public float Rating { get; set; }
+      public string Description { get; set; }
+      public Guid ProductId { get; set; }
+      public Guid UserId { get; set; }
    }
 }
