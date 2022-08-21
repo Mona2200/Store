@@ -72,10 +72,10 @@ namespace Store.Data.Repos
             product.Name = updateProduct.NewName;
          if (!string.IsNullOrEmpty(updateProduct.NewDescription))
             product.Description = updateProduct.NewDescription;
-         if (!string.IsNullOrEmpty(updateProduct.NewCategories))
-            product.Categories.Add(updateProduct.NewCategories);
-         if (!string.IsNullOrEmpty(updateProduct.NewSize))
-            product.Size.Add(updateProduct.NewSize);
+         if (updateProduct.NewCategories.Length != 0)
+            product.Categories = updateProduct.NewCategories;
+         if (updateProduct.NewSize.Length != 0)
+            product.Size = updateProduct.NewSize;
          if (updateProduct.NewPrice != 0)
             product.Price = updateProduct.NewPrice;
 

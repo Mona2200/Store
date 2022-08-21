@@ -9,21 +9,12 @@ using System.Threading.Tasks;
 namespace Store.Contracts.Validators
 {
    /// <summary>
-   /// Реализация валидации принимаемых параметров
+   /// Реализация валидации принимаемых параметров при добавлении товара
    /// </summary>
    public class AddProductRequestValidator : AbstractValidator<AddProductRequest>
    {
-      private string[] categories;
       public AddProductRequestValidator()
       {
-         categories = new[]
-         {
-         "Shoes",
-         "Top",
-         "Pants",
-         "Sweater"
-         };
-
          RuleFor(x => x.Name).NotEmpty().Must(BeValidName).WithMessage("Название товара должно состоять более чем из 5 и менее чем из 30 символов.");
          RuleFor(x => x.Description).NotEmpty().Must(BeValidDescription).WithMessage("Описание товара должно состоять более чем из 50 и менее чем из 500 символов.");
          RuleFor(x => x.Gender).NotEmpty().Must(BeValidGender).WithMessage("Доступен выбор гендера male или female.");
@@ -34,7 +25,7 @@ namespace Store.Contracts.Validators
 
       private bool BeValidName(string Name)
       {
-         if (Name.Length < 5 || Name.Length > 30)
+         if (Name.Length < 5 || Name.Length > 50)
             return false;
          return true;
       }
@@ -56,7 +47,7 @@ namespace Store.Contracts.Validators
       private bool BeValidCategories(string[] Categories)
       {
          foreach (var c in Categories)
-            if (!categories.Any(x => x == c))
+            if (!Values.ValidCategories.Any(x => x == c))
                return false;
          return true;
       }
