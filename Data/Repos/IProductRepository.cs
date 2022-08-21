@@ -1,4 +1,5 @@
 ﻿using Store.Data.Models;
+using Store.Data.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,9 @@ namespace Store.Data.Repos
       Task<Product[]> GetProducts();
       Task<Product> GetProductById(Guid id);
       Task<Product[]> GetProductsByName(string name);
+      Task<Product[]> GetProductsByCategory(string category);
       Task SaveProduct(Product product);
-      Task UpdateProduct(Product product);
+      Task UpdateProduct(Product product, UpdateProductQuery updateProduct);
       Task DeleteProduct(Product product);
    }
 }

@@ -19,5 +19,6 @@ namespace Store.Data.Models
       public string House { get; set; }
       public uint Flat { get; set; }
       public uint Postcode { get; set; }
+      public Review[] Reviews { get; set; }
    }
 }
