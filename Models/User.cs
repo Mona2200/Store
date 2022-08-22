@@ -10,7 +10,7 @@ namespace Store.Models
       public Guid Id { get; set; }
       public string FirstName { get; set; }
       public string SecondName { get; set; }
-      public uint Phone { get; set; }
+      public int Phone { get; set; }
       public Address Address { get; set; }
       public Review[] Reviews { get; set; }
       public Product[] Products { get; set; }

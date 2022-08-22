@@ -25,7 +25,7 @@ namespace Store.Data.Repos
       /// </summary>
       public async Task<Product[]> GetProducts()
       {
-         return await _context.Products.Include(p => p.Reviews).ToArrayAsync();
+         return await _context.Products.ToArrayAsync();
       }
 
       /// <summary>
@@ -33,7 +33,7 @@ namespace Store.Data.Repos
       /// </summary>
       public async Task<Product> GetProductById(Guid id)
       {
-         return await _context.Products.Include(p => p.Reviews).Where(p => p.Id == id).FirstOrDefaultAsync();
+         return await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
       }
 
       /// <summary>
@@ -41,7 +41,7 @@ namespace Store.Data.Repos
       /// </summary>
       public async Task<Product[]> GetProductsByName(string name)
       {
-         return await _context.Products.Include(p => p.Reviews).Where(p => p.Name == name).ToArrayAsync();
+         return await _context.Products.Where(p => p.Name == name).ToArrayAsync();
       }
 
       /// <summary>
@@ -49,7 +49,7 @@ namespace Store.Data.Repos
       /// </summary>
       public async Task<Product[]> GetProductsByCategory(string category)
       {
-         return await _context.Products.Include(p => p.Reviews).Where(p => p.Categories.Contains(category)).ToArrayAsync();
+         return await _context.Products.Where(p => p.Categories.Contains(category)).ToArrayAsync();
       }
 
       /// <summary>

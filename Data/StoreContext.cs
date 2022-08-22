@@ -15,7 +15,8 @@ namespace Store.Data
 
       public StoreContext(DbContextOptions<StoreContext> options) : base(options)
       {
-         Database.EnsureCreated();
+         //Database.EnsureCreated();
+         Database.Migrate();
       }
 
       protected override void OnModelCreating(ModelBuilder builder)

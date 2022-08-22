@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Store.Data.Repos;
+using ProductView = Store.Contracts.Models.ProductView;
 
 namespace Store.Controllers
 {
@@ -17,27 +19,53 @@ namespace Store.Controllers
    [Route("[controller]")]
    public class ProductController : ControllerBase
    {
-      private IOptions<Product> _options;
+      private IProductRepository _products;
       private IMapper _mapper;
 
-      public ProductController(IOptions<Product> options, IMapper mapper)
+      public ProductController(IProductRepository products, IMapper mapper)
       {
-         _options = options;
+         _products = products;
          _mapper = mapper;
       }
 
       [HttpGet]
       [Route("")]
-      public IActionResult Get()
+      public async Task<IActionResult> GetProducts()
       {
-         return StatusCode(200, "Устройства отсутствуют");
+         var products = await _products.GetProducts();
+
+         var resp = new GetProductsResponse
+         {
+            ProductAmount = products.Length,
+            Products = _mapper.Map<Data.Models.Product[], Contracts.Models.ProductView[]>(products)
+         };
+
+         return StatusCode(200, resp);
       }
 
       [HttpPost]
-      [Route("Add")]
-      public IActionResult Add([FromBody] AddProductRequest request)
+      [Route("")]
+      public async Task<IActionResult> Add(AddProductRequest request)
       {
-         return StatusCode(200, $"Добавление {request.Name} прошло успешно.");
+         var product = _mapper.Map<AddProductRequest, Data.Models.Product>(request);
+         await _products.SaveProduct(product);
+         return StatusCode(201, $"Добавление {request.Name} прошло успешно");
+      }
+
+      [HttpPatch]
+      [Route("{id}")]
+      public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] EditProductRequest request)
+      {
+         var product = await _products.GetProductById(id);
+         if (product == null)
+            return StatusCode(400, $"Ошибка: Товар с идентификатором {id} не существует.");
+
+         await _products.UpdateProduct(
+         product,
+         new Data.Queries.UpdateProductQuery(request.NewName, request.NewDescription, request.NewCategories, request.NewSize, request.NewPrice)
+         );
+
+         return StatusCode(200, $"Товар {product.Name} обновлён.");
       }
    }
 }

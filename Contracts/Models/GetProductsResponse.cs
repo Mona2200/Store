@@ -1,14 +1,18 @@
-﻿using Store.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models
+namespace Store.Contracts.Models
 {
-   public class Product
+   public class GetProductsResponse
    {
-      public Guid Id { get; set; }
+      public int ProductAmount { get; set; }
+      public ProductView[] Products { get; set; }
+   }
+
+   public class ProductView
+   {
       public string Name { get; set; }
       public string Description { get; set; }
       public bool Gender { get; set; }

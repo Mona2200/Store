@@ -14,10 +14,9 @@ namespace Store.Data.Models
       public string Name { get; set; }
       public string Description { get; set; }
       public bool Gender { get; set; }
-      public string[] Categories { get; set; }
-      public string[] Size { get; set; }
-      public uint Price { get; set; }
-      public float Rating { get; set; }
-      public Review[] Reviews{ get; set; }
+      public string Categories { get; set; }
+      public string Size { get; set; }
+      public int Price { get; set; }
+      public double Rating { get; set; } = 0.0;
    }
 }

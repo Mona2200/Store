@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Store.Contracts.Models;
 
 namespace Store
 {
@@ -15,7 +16,9 @@ namespace Store
    {
       public MappingProfile()
       {
-         CreateMap<Product, ProductView>();
+         CreateMap<Data.Models.Product, Contracts.Models.ProductView>();
+
+         CreateMap<AddProductRequest, Data.Models.Product>();
       }
    }
 }

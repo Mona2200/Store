@@ -15,27 +15,28 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Store.Contracts.Validators;
+using Store.Data.Repos;
+using Store.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Store
 {
    public class Startup
    {
-      public Startup(IConfiguration configuration)
-      {
-         Configuration = configuration;
-      }
-
       private IConfiguration Configuration { get; } = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
       // This method gets called by the runtime. Use this method to add services to the container.
       public void ConfigureServices(IServiceCollection services)
       {
-         services.Configure<Product>(Configuration);
-
-         services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddProductRequestValidator>());
-
          var assembly = Assembly.GetAssembly(typeof(MappingProfile));
          services.AddAutoMapper(assembly);
+
+         services.AddSingleton<IProductRepository, ProductRepository>();
+
+         string connection = Configuration.GetConnectionString("DefaultConnection");
+         services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
+
+         services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddProductRequestValidator>());
 
          services.AddControllers();
          services.AddSwaggerGen(c =>

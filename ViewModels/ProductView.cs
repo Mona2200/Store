@@ -10,11 +10,10 @@ namespace Store.ViewModels
    {
       public string Name { get; set; }
       public string Description { get; set; }
-      public string Gender { get; set; }
-      public List<Category> Categories { get; set; }
+      public bool Gender { get; set; }
+      public string Categories { get; set; }
       public string Size { get; set; }
-      public uint Price { get; set; }
-      public float Rating { get; set; }
-      public List<Review> Reviews { get; set; }
+      public int Price { get; set; }
+      public double Rating { get; set; }
    }
 }

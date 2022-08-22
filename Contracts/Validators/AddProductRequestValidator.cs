@@ -17,10 +17,9 @@ namespace Store.Contracts.Validators
       {
          RuleFor(x => x.Name).NotEmpty().Must(BeValidName).WithMessage("Название товара должно состоять более чем из 5 и менее чем из 30 символов.");
          RuleFor(x => x.Description).NotEmpty().Must(BeValidDescription).WithMessage("Описание товара должно состоять более чем из 50 и менее чем из 500 символов.");
-         RuleFor(x => x.Gender).NotEmpty().Must(BeValidGender).WithMessage("Доступен выбор гендера male или female.");
          RuleFor(x => x.Categories).NotEmpty().Must(BeValidCategories).WithMessage("Какая-либо из категорий не была найдена.");
          RuleFor(x => x.Size).NotEmpty();
-         RuleFor(x => x.Price).NotEmpty();
+         RuleFor(x => x.Price).NotEmpty().ExclusiveBetween(1, 100000);
       }
 
       private bool BeValidName(string Name)
@@ -37,16 +36,10 @@ namespace Store.Contracts.Validators
          return true;
       }
 
-      private bool BeValidGender(string Gender)
+      private bool BeValidCategories(string Categories)
       {
-         if (Gender != "male" && Gender != "female")
-            return false;
-         return true;
-      }
-
-      private bool BeValidCategories(string[] Categories)
-      {
-         foreach (var c in Categories)
+         string[] categories = Categories.Split(' ');
+         foreach (var c in categories)
             if (!Values.ValidCategories.Any(x => x == c))
                return false;
          return true;

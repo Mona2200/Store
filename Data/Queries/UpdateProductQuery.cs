@@ -12,11 +12,11 @@ namespace Store.Data.Queries
    {
       public string NewName { get; set; }
       public string NewDescription { get; set; }
-      public string[] NewCategories { get; set; }
-      public string[] NewSize { get; set; }
-      public uint NewPrice { get; set; }
+      public string NewCategories { get; set; }
+      public string NewSize { get; set; }
+      public int NewPrice { get; set; }
 
-      public UpdateProductQuery(string newName = null, string newDescription = null, string[] newCategories = null, string[] newSize = null, uint newPrice = 0)
+      public UpdateProductQuery(string newName = null, string newDescription = null, string newCategories = null, string newSize = null, int newPrice = 0)
       {
          NewName = newName;
          NewDescription = newDescription;

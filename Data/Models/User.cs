@@ -12,13 +12,12 @@ namespace Store.Data.Models
       public Guid Id { get; set; }
       public string FirstName { get; set; }
       public string SecondName { get; set; }
-      public uint Phone { get; set; }
+      public int Phone { get; set; }
       public string Region { get; set; }
       public string Town { get; set; }
       public string Outside { get; set; }
       public string House { get; set; }
-      public uint Flat { get; set; }
-      public uint Postcode { get; set; }
-      public Review[] Reviews { get; set; }
+      public int Flat { get; set; }
+      public int Postcode { get; set; }
    }
 }

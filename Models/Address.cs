@@ -6,7 +6,7 @@
       public string Town { get; set; }
       public string Outside { get; set; }
       public string House { get; set; }
-      public uint Flat { get; set; }
-      public uint Postcode { get; set; }
+      public int Flat { get; set; }
+      public int Postcode { get; set; }
    }
 }

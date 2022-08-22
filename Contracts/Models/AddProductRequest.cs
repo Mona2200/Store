@@ -8,17 +8,11 @@ namespace Store.Contracts.Models
 {
    public class AddProductRequest
    {
-      [Required]
       public string Name { get; set; }
-      [Required]
       public string Description { get; set; }
-      [Required]
-      public string Gender { get; set; }
-      [Required]
-      public string[] Categories { get; set; }
-      [Required]
+      public bool Gender { get; set; }
+      public string Categories { get; set; }
       public string Size { get; set; }
-      [Required]
-      public uint Price { get; set; }
+      public int Price { get; set; }
    }
 }

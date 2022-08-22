@@ -18,7 +18,7 @@ namespace Store.Contracts.Validators
          RuleFor(x => x.NewDescription).NotEmpty().Must(BeValidDescription).WithMessage("Описание товара должно состоять более чем из 50 и менее чем из 500 символов.");
          RuleFor(x => x.NewCategories).NotEmpty().Must(BeValidCategories).WithMessage("Какая-либо из категорий не была найдена.");
          RuleFor(x => x.NewSize).NotEmpty();
-         RuleFor(x => x.NewPrice).NotEmpty();
+         RuleFor(x => x.NewPrice).NotEmpty().ExclusiveBetween(1, 100000);
       }
 
       private bool BeValidName(string Name)
@@ -35,9 +35,10 @@ namespace Store.Contracts.Validators
          return true;
       }
 
-      private bool BeValidCategories(string[] Categories)
+      private bool BeValidCategories(string Categories)
       {
-         foreach (var c in Categories)
+         string[] categories = Categories.Split(' ');
+         foreach (var c in categories)
             if (!Values.ValidCategories.Any(x => x == c))
                return false;
          return true;
