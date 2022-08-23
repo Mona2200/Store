@@ -91,9 +91,7 @@ namespace Store.Data.Repos
       /// </summary>
       public async Task DeleteProduct(Product product)
       {
-         var entry = _context.Entry(product);
-         if (entry.State == EntityState.Detached)
-            _context.Products.Remove(product);
+         _context.Products.Remove(product);
          await _context.SaveChangesAsync();
       }
    }

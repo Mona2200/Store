@@ -67,5 +67,18 @@ namespace Store.Controllers
 
          return StatusCode(200, $"Товар {product.Name} обновлён.");
       }
+
+      [HttpDelete]
+      [Route("{id}")]
+      public async Task<IActionResult> Delete([FromRoute] Guid id)
+      {
+         var product = await _products.GetProductById(id);
+         if (product == null)
+            return StatusCode(400, $"Ошибка: Товар с идентификатором {id} не существует.");
+
+         await _products.DeleteProduct(product);
+
+         return StatusCode(204, $"Товар удалён.");
+      }
    }
 }
