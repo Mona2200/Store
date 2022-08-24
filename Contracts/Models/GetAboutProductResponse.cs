@@ -1,4 +1,5 @@
 ﻿using Store.Data.Models;
+using Store.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,5 @@ namespace Store.Contracts.Models
    {
       public ProductView Product { get; set; }
       public ReviewView[] Reviews { get; set; }
-   }
-
-   public class ReviewView
-   {
-      public double Rating { get; set; }
-      public string Description { get; set; }
    }
 }

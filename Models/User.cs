@@ -12,7 +12,5 @@ namespace Store.Models
       public string SecondName { get; set; }
       public int Phone { get; set; }
       public Address Address { get; set; }
-      public Review[] Reviews { get; set; }
-      public Product[] Products { get; set; }
    }
 }

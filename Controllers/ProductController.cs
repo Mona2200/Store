@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Store.Data.Repos;
-using ProductView = Store.Contracts.Models.ProductView;
 
 namespace Store.Controllers
 {
@@ -39,7 +38,7 @@ namespace Store.Controllers
          var resp = new GetProductsResponse
          {
             ProductAmount = products.Length,
-            Products = _mapper.Map<Data.Models.Product[], Contracts.Models.ProductView[]>(products)
+            Products = _mapper.Map<Data.Models.Product[], ProductView[]>(products)
          };
 
          return StatusCode(200, resp);
@@ -54,8 +53,8 @@ namespace Store.Controllers
 
          var resp = new GetAboutProductResponse
          {
-            Product = _mapper.Map<Data.Models.Product, Contracts.Models.ProductView>(product),
-            Reviews = _mapper.Map<Data.Models.Review[], Contracts.Models.ReviewView[]>(reviews)
+            Product = _mapper.Map<Data.Models.Product, ProductView>(product),
+            Reviews = _mapper.Map<Data.Models.Review[], ReviewView[]>(reviews)
          };
 
          return StatusCode(200, resp);
@@ -76,14 +75,14 @@ namespace Store.Controllers
       {
          var product = await _products.GetProductById(id);
          if (product == null)
-            return StatusCode(400, $"Ошибка: Товар с идентификатором {id} не существует.");
+            return StatusCode(400, $"Ошибка: Товар с идентификатором {id} не существует");
 
          await _products.UpdateProduct(
          product,
          new Data.Queries.UpdateProductQuery(request.NewName, request.NewDescription, request.NewCategories, request.NewSize, request.NewPrice)
          );
 
-         return StatusCode(200, $"Товар {product.Name} обновлён.");
+         return StatusCode(200, $"Товар {product.Name} обновлён");
       }
 
       [HttpDelete]
@@ -92,11 +91,11 @@ namespace Store.Controllers
       {
          var product = await _products.GetProductById(id);
          if (product == null)
-            return StatusCode(400, $"Ошибка: Товар с идентификатором {id} не существует.");
+            return StatusCode(400, $"Ошибка: Товар с идентификатором {id} не существует");
 
          await _products.DeleteProduct(product);
 
-         return StatusCode(204, $"Товар удалён.");
+         return StatusCode(204, "Товар удалён");
       }
    }
 }
