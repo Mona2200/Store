@@ -20,11 +20,13 @@ namespace Store.Controllers
    public class ProductController : ControllerBase
    {
       private IProductRepository _products;
+      private IReviewRepository _reviews;
       private IMapper _mapper;
 
-      public ProductController(IProductRepository products, IMapper mapper)
+      public ProductController(IProductRepository products, IReviewRepository reviews, IMapper mapper)
       {
          _products = products;
+         _reviews = reviews;
          _mapper = mapper;
       }
 
@@ -38,6 +40,22 @@ namespace Store.Controllers
          {
             ProductAmount = products.Length,
             Products = _mapper.Map<Data.Models.Product[], Contracts.Models.ProductView[]>(products)
+         };
+
+         return StatusCode(200, resp);
+      }
+
+      [HttpGet]
+      [Route("{id}")]
+      public async Task<IActionResult> GetAboutProduct([FromRoute] Guid id)
+      {
+         var product = await _products.GetAboutProductById(id);
+         var reviews = await _reviews.GetReviewsByIdProduct(id);
+
+         var resp = new GetAboutProductResponse
+         {
+            Product = _mapper.Map<Data.Models.Product, Contracts.Models.ProductView>(product),
+            Reviews = _mapper.Map<Data.Models.Review[], Contracts.Models.ReviewView[]>(reviews)
          };
 
          return StatusCode(200, resp);

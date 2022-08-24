@@ -15,6 +15,5 @@ namespace Store.Data.Models
       public string Description { get; set; }
       public Guid ProductId { get; set; }
       public Guid UserId { get; set; }
-      public User User { get; set; }
    }
 }

@@ -53,6 +53,14 @@ namespace Store.Data.Repos
       }
 
       /// <summary>
+      /// Выгрузка товара по id
+      /// </summary>
+      public async Task<Product> GetAboutProductById(Guid id)
+      {
+         return await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
+      }
+
+      /// <summary>
       /// Добавить товар
       /// </summary>
       public async Task SaveProduct(Product product)

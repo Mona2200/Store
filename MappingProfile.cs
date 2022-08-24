@@ -17,7 +17,7 @@ namespace Store
       public MappingProfile()
       {
          CreateMap<Data.Models.Product, Contracts.Models.ProductView>();
-
+         CreateMap<Data.Models.Review, Contracts.Models.ReviewView>();
          CreateMap<AddProductRequest, Data.Models.Product>();
       }
    }

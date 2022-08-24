@@ -16,6 +16,7 @@ namespace Store.Data.Repos
       Task<Product> GetProductById(Guid id);
       Task<Product[]> GetProductsByName(string name);
       Task<Product[]> GetProductsByCategory(string category);
+      Task<Product> GetAboutProductById(Guid id);
       Task SaveProduct(Product product);
       Task UpdateProduct(Product product, UpdateProductQuery updateProduct);
       Task DeleteProduct(Product product);

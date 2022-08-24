@@ -1,0 +1,20 @@
+﻿using Store.Data.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Store.Contracts.Models
+{
+   public class GetAboutProductResponse
+   {
+      public ProductView Product { get; set; }
+      public ReviewView[] Reviews { get; set; }
+   }
+
+   public class ReviewView
+   {
+      public double Rating { get; set; }
+      public string Description { get; set; }
+   }
+}

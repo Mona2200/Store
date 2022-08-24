@@ -32,6 +32,7 @@ namespace Store
          services.AddAutoMapper(assembly);
 
          services.AddSingleton<IProductRepository, ProductRepository>();
+         services.AddSingleton<IReviewRepository, ReviewRepository>();
 
          string connection = Configuration.GetConnectionString("DefaultConnection");
          services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
