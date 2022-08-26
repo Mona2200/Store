@@ -12,11 +12,12 @@ namespace Store.Data
       public DbSet<Product> Products { get; set; }
       public DbSet<Review> Reviews { get; set; }
       public DbSet<User> Users { get; set; }
+      public DbSet<Address> Addresses { get; set; }
 
       public StoreContext(DbContextOptions<StoreContext> options) : base(options)
       {
-         //Database.EnsureCreated();
-         Database.Migrate();
+         Database.EnsureCreated();
+         //Database.Migrate();
       }
 
       protected override void OnModelCreating(ModelBuilder builder)
@@ -24,6 +25,7 @@ namespace Store.Data
          builder.Entity<Product>().ToTable("Products");
          builder.Entity<Review>().ToTable("Reviews");
          builder.Entity<User>().ToTable("Users");
+         builder.Entity<Address>().ToTable("Addresses");
       }
    }
 }

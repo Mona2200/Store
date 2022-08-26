@@ -18,8 +18,10 @@ namespace Store
       {
          CreateMap<Data.Models.Product, ProductView>();
          CreateMap<Data.Models.Review, ReviewView>();
+         CreateMap<Data.Models.User, UserView>();
          CreateMap<AddProductRequest, Data.Models.Product>();
          CreateMap<AddReviewRequest, Data.Models.Review>();
+         CreateMap<AddUserRequest, Data.Models.User>();
       }
    }
 }

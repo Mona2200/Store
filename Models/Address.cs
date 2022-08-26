@@ -8,5 +8,6 @@
       public string House { get; set; }
       public int Flat { get; set; }
       public int Postcode { get; set; }
+      public User User { get; set; }
    }
 }
